@@ -156,6 +156,9 @@ int mystrstr(const char *p, const char *q)
     }
     return 0;
 }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 28bd56d56ac59201b3a17284b8de7b89b5482c53

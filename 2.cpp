@@ -30,6 +30,7 @@ int main()
     char s1[80], s2[80];
     cout<<"Enter the s1 string: ";
     cin.getline(s1, 80);
+
     cout<<"Enter the s2 string: ";
     cin.getline(s2, 80);
 

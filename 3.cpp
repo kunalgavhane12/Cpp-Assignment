@@ -14,6 +14,7 @@ int mystrlen(char *p)
     }
     return i;
 }
+
 int strPalindrone(char *p)
 {
     int len1=mystrlen(p);
