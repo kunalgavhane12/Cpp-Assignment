@@ -17,9 +17,9 @@ int mystrlen(char *p)
 
 int strPalindrone(char *p)
 {
-    int len1=mystrlen(p);
+    int len=mystrlen(p);
     
-    for(int i=0,j=len1-1; i<j; i++,j--)
+    for(int i=0,j=len-1; i<j; i++,j--)
     {
         if(p[i]!=p[j])
         return 0;

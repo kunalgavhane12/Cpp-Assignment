@@ -6,33 +6,27 @@ C++ program to swap two Strings
 
 using namespace std;
 
-void mystrcpy(char *d, const char *s)
+void mystrcpy(string &d, const string &s)
 {
-    while (*s)
-    {
-        *d=*s;
-        d++;
-        s++;
-    }
-    *d='\0'; 
+    d=s;
 }
 
-void myswap(char *s1, char *s2)
+void myswap(string &str1, string &str2)
 {
-    char temp[80]; 
-    mystrcpy(temp, s1); 
-    mystrcpy(s1, s2); 
-    mystrcpy(s2, temp); 
+    string temp=""; 
+    mystrcpy(temp, str1); 
+    mystrcpy(str1, str2); 
+    mystrcpy(str2, temp); 
 }
 
 int main()
 {
-    char s1[80], s2[80];
+    string s1, s2;
     cout<<"Enter the s1 string: ";
-    cin.getline(s1, 80);
+    getline(cin,s1);
 
     cout<<"Enter the s2 string: ";
-    cin.getline(s2, 80);
+    getline(cin,s2);
 
     cout<<"Before swap: "<<endl;
     cout<<"String s1: "<<s1<< endl;
