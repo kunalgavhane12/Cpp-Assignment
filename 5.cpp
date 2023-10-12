@@ -20,6 +20,7 @@ string removeAllDuplicate(string s)
    return temp;
 }
 
+
 int main()
 {
     string str;
