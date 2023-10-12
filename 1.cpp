@@ -11,69 +11,93 @@ using namespace std;
 #define size 80
 
 int mystrlen(const char *);
-void mystrcpy(char *d, const char *s);
+void mystrcpy(const char*,char*);
 int mystrchr(const char*,char);
 int mystrstr(const char*,const char*);
+
 int main()
 {
-    /*********************User Define strlen*****************/
-    	char str[size];
-        int len;
-        cout<<"Enter the string:"<<endl;
-        cin.getline(str, size);
-        len=mystrlen(str);
-        if(len==0)
+    int choise;
+    do{
+        cout<<"1. Mystrlen 2. Mystrcpy 3. Mystrchr 4. Mystrstr 5.exit"<<endl;
+        cin>>choise;
+        switch(choise)
         {
-            cout<<"string is empty"<<endl;
+        /*********************User Define strlen*****************/
+        	case 1:
+            	char str[size];
+                int len;
+                cout<<"Enter the string:"<<endl;
+                cin.ignore();
+                cin.getline(str, size);
+                len=mystrlen(str);
+                if(len==0)
+                {
+                    cout<<"string is empty"<<endl;
+                }
+                else
+                {
+                    cout<<"String length: "<<len<<endl;
+                }
+                break;
+        /*********************User Define strcpy*****************/
+        	case 2:
+            	char source[size],destination[size];
+            	cout<<"Enter a source string:"<<endl;
+            	cin.ignore();
+            	cin.getline(source, size);
+            	
+            	mystrcpy(source,destination);
+            
+            	cout<<"Source string: "<<source<<endl;
+            	cout<<"Destination string: "<<destination<<endl;
+                break;         
+        /*********************User Define strchr*****************/
+            case 3:
+               	char s[size],ch;
+               	int index;
+               	cout<<"Enter a string: "<<endl;
+               	cin.ignore();
+               	cin.getline(s,size);
+               	cout<<"Enter a character: "<<endl;
+               	cin>>ch;
+               	
+               	index=mystrchr(s,ch);
+               	if(index==0)
+               	{
+               	    cout<<ch<<" is not present"<<endl;
+               	}
+               	else
+               	{
+               	    cout<<ch<<" present at index: "<<index+1<<endl;
+               	}
+               	break;
+       /*********************User Define strstr*****************/
+            case 4:
+               	char main[size],sub[size];
+               	cout<<"Enter a main string:"<<endl;
+               	cin.ignore();
+               	cin.getline(main, size);
+               	cout<<"Enter a sub string:"<<endl;
+               	cin.ignore();
+               	cin.getline(sub, size);
+                	
+               	if(mystrstr(main,sub))
+               	{
+               	    cout<<"Sub String is found"<<endl;
+               	}
+               	else
+               	{
+               	    cout<<"Sub String is not found"<<endl;
+               	}
+               	break;
+               	case 5:
+               	exit(0);
+               	default:
+               	cout<<"Invalid Input"<<endl;
+               	break;
         }
-        else
-        {
-            cout<<"String length: "<<len<<endl;
-        }
-    /*********************User Define strcpy*****************/
-    	char source[size],destination[size];
-    	cout<<"Enter a source string:"<<endl;
-    	cin.getline(source, size);
-    	
-    	mystrcpy(destination,source);
-    
-    	cout<<"Source string: "<<source<<endl;
-    	cout<<"Destination string: "<<destination<<endl;
- 
-    /*********************User Define strchr*****************/
-  
-       	char s[size],ch;
-       	cout<<"Enter a string: "<<endl;
-       	cin.getline(s,size);
-       	cout<<"Enter a character: "<<endl;
-       	cin>>ch;
-       	cin.ignore();
-       	
-       	int index=mystrchr(s,ch);
-       	if(index==0)
-       	{
-       	    cout<<ch<<" is not present"<<endl;
-       	}
-       	else
-       	{
-       	    cout<<ch<<" present at index: "<<index+1<<endl;
-       	}
-   /*********************User Define strstr*****************/
-       	char main[size],sub[size];
-       	cout<<"Enter a main string:"<<endl;
-       	cin.getline(main, size);
-       	cout<<"Enter a sub string:"<<endl;
-       	cin.getline(sub, size);
-        	
-       	if(mystrstr(main,sub))
-       	{
-       	    cout<<"Sub String is found"<<endl;
-       	}
-       	else
-       	{
-       	    cout<<"Sub String is not found"<<endl;
-       	}
-   
+    }while(choise!=5);
 	return 0;
 	
 }
@@ -88,15 +112,15 @@ int mystrlen(const char *p)
     }
     return i;
 }
-void mystrcpy(char *d, const char *s)
+void mystrcpy(const char *s, char *d)
 {
-    while (*s!='\0')
+    while(*s)
     {
         *d=*s;
-        d++;
         s++;
+        d++;
     }
-    *d='\0'; 
+    *d=*s;
 }
 int mystrchr(const char *p,char ch)
 {
@@ -132,5 +156,3 @@ int mystrstr(const char *p, const char *q)
     }
     return 0;
 }
-
-
