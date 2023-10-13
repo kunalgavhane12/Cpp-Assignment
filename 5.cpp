@@ -8,7 +8,7 @@ using namespace std;
 string removeAllDuplicate(string s)
 {
    string temp="";
-   int arr[128]={0};
+   int arr[256]={0};
    for(int i=0; i<s.length(); i++)
    {
        if(arr[s[i]]==0)
