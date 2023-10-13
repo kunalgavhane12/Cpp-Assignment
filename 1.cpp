@@ -11,9 +11,9 @@ using namespace std;
 #define size 80
 
 int mystrlen(const char *);
-void mystrcpy(const char*,char*);
-int mystrchr(const char*,char);
-int mystrstr(const char*,const char*);
+char* mystrcpy(char*, const char*);
+char *mystrchr(const char *, int );
+char* mystrstr(const char*,const char*);
 
 int main()
 {
@@ -47,7 +47,7 @@ int main()
             	cin.ignore();
             	cin.getline(source, size);
             	
-            	mystrcpy(source,destination);
+            	mystrcpy(destination, source);
             
             	cout<<"Source string: "<<source<<endl;
             	cout<<"Destination string: "<<destination<<endl;
@@ -55,40 +55,38 @@ int main()
         /*********************User Define strchr*****************/
             case 3:
                	char s[size],ch;
-               	int index;
+               	char *p;
+               	
                	cout<<"Enter a string: "<<endl;
                	cin.ignore();
                	cin.getline(s,size);
+               	
                	cout<<"Enter a character: "<<endl;
                	cin>>ch;
                	
-               	index=mystrchr(s,ch);
-               	if(index==0)
-               	{
-               	    cout<<ch<<" is not present"<<endl;
-               	}
-               	else
-               	{
-               	    cout<<ch<<" present at index: "<<index+1<<endl;
-               	}
+               	p=mystrchr(s,ch);
+               	cout<<"String after "<<ch<<" is - "<<p<<endl;
+               	
                	break;
        /*********************User Define strstr*****************/
             case 4:
                	char main[size],sub[size];
+               	char *ret;
                	cout<<"Enter a main string:"<<endl;
                	cin.ignore();
                	cin.getline(main, size);
                	cout<<"Enter a sub string:"<<endl;
-               	cin.ignore();
-               	cin.getline(sub, size);
+               	cin>>sub;
                 	
-               	if(mystrstr(main,sub))
+                ret=mystrstr(main,sub);
+               	if(ret)
                	{
-               	    cout<<"Sub String is found"<<endl;
+               	    cout<<"String is found"<<endl;
+               	    cout<<"First occurrence of string "<<sub<<" in "<<main<<" is "<<ret<<endl;
                	}
                	else
                	{
-               	    cout<<"Sub String is not found"<<endl;
+               	    cout<<"String not found"<<endl;
                	}
                	break;
                	case 5:
@@ -112,7 +110,7 @@ int mystrlen(const char *p)
     }
     return i;
 }
-void mystrcpy(const char *s, char *d)
+char* mystrcpy(char *d, const char *s)
 {
     while(*s)
     {
@@ -121,17 +119,18 @@ void mystrcpy(const char *s, char *d)
         d++;
     }
     *d=*s;
+    return d;
 }
-int mystrchr(const char *p,char ch)
+char* mystrchr(const char *p,int ch)
 {
     for(int i=0; p[i]; i++)
     {
         if(p[i]==ch)
-        return i;
+        return (char*)(p+i);
     }
-    return 0;
+    return NULL;
 }
-int mystrstr(const char *p, const char *q)
+char* mystrstr(const char *p, const char *q)
 {
     int len1=mystrlen(p);
     int len2=mystrlen(q);
@@ -151,14 +150,15 @@ int mystrstr(const char *p, const char *q)
                 break;
             }
             if(j==len2)
-            return i;
+            return (char*)(p+i);
         }
     }
     return 0;
 }
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> 28bd56d56ac59201b3a17284b8de7b89b5482c53
+
+
+
+
