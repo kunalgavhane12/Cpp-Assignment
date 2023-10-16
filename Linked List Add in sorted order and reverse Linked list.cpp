@@ -1,26 +1,28 @@
-/******************************************************************************
-Linked List Add in sorted order and reverse Linked list
+/*****************************************************************************
+ Linked List InsertINsorted order and Reverse Linked list
 *******************************************************************************/
+
 #include <iostream>
 
 using namespace std;
-struct Node{
+
+typedef struct Node{
     int data;
-    struct Node *next;
-};
-struct Node *createNode(int val)
+    struct Node* next;
+}SLL;
+
+SLL* createNode(int val)
 {
-    struct Node *ptr= new (struct Node);
+    SLL *ptr=new (SLL);
     ptr->data=val;
     ptr->next=NULL;
     return ptr;
 }
-struct Node* addInsorted(struct Node*  head,int val)
+SLL *insertInSorted(SLL *head,int val)
 {
-    struct Node* ptr=createNode(val);
-    struct Node* prev= NULL;
-    struct Node* cur=head;
-    
+    SLL *ptr=createNode(val);
+    SLL *prev=NULL;
+    SLL *cur=head;
     if(head==NULL)
     {
         head=ptr;
@@ -28,7 +30,7 @@ struct Node* addInsorted(struct Node*  head,int val)
     }
     while(cur && cur->data < ptr->data)
     {
-        prev=cur;
+        prev = cur;
         cur=cur->next;
     }
     if(prev==NULL)
@@ -38,81 +40,84 @@ struct Node* addInsorted(struct Node*  head,int val)
     }
     else
     {
-        ptr->next=cur;
+       
         prev->next=ptr;
         
     }
     
     return head;
 }
-struct Node* ReverseLinkedList(struct Node* head)
+SLL * reverse(SLL * head)
 {
-    struct Node *prev=NULL;
-    struct Node *cur=head;
-    struct Node *temp=NULL;
-    while(cur!=NULL)
+    SLL *prev=NULL;
+    SLL *cur=head;
+    SLL *nxt=NULL;
+    while(cur)
     {
-        temp=cur->next;
+        nxt=cur->next;
         cur->next=prev;
         
         prev=cur;
-        cur=temp;
+        cur=nxt;
     }
     head=prev;
+    // SLL *prev=NULL,*cur=NULL,*ptr=NULL;
+    // ptr=head;
+    // while(ptr)
+    // {
+    //       prev=cur;
+    //       cur=ptr;
+    
+    //       ptr=ptr->next;
+    //       cur->next=prev;
+    // }
+    // head=cur;
     return head;
 }
-void traversalLinkedList(struct Node* head)
+void traversalList(SLL *head)
 {
-    if(head==NULL)
+    while(head)
     {
-        cout<<"List is empty"<<endl;
+        cout<<head->data<<" ";
+        head=head->next;
     }
-    else
-    {
-        while(head!=NULL)
-        {
-            cout<<head->data<<" ";
-            head=head->next;
-        }
-        cout<<endl;
-    }
+    cout<<endl;
 }
 int main()
 {
-  struct Node *head=NULL;
-  int choice,data;
-  do{
-      cout<<"1.Add in Sorted 2.Reverse Linked List 3.Display 4.exit"<<endl;
-      cout<<"Enter the choice:"<<endl;
-      cin>>choice;
-      
-      switch(choice)
-      {
-          case 1:
-          cout<<"Enter the data: "<<endl;
-          cin>>data;
-          head=addInsorted(head,data);
-          break;
-          
-          case 2:
-            cout<<"Before Reverse Linked List: "<<endl;
-            traversalLinkedList(head);
-            head=ReverseLinkedList(head);
-            cout<<"After Reverse Linked List: "<<endl;
-            traversalLinkedList(head);
-          break;
-          
-          case 3:
-          traversalLinkedList(head);
-          break;
-          
-          case 4:
-          exit(0);
-          
-          default:
-          cout<<"Invalid Input"<<endl;
-          break;
-      }
-  }while(choice!=4);
+    SLL *head=NULL;
+    int data,choice;
+    do{
+        cout<<"1.insertInSorted 2.Reverse 3.Display 4.exit"<<endl;
+        cout<<"Enter choice: ";
+        cin>>choice;
+        switch(choice)
+        {
+            case 1:
+            cout<<"Enter data: ";
+            cin>>data;
+            head=insertInSorted(head, data);
+            break;
+            
+            case 2:cout<<"before reverse"<<endl;
+            traversalList(head);
+            head=reverse(head);
+            cout<<"after reverse"<<endl;
+            traversalList(head);
+            break;
+            
+            case 3:
+            traversalList(head);
+            break;
+            
+            case 4:
+            exit(0);
+            
+            default:
+            cout<<"Invalid Input"<<endl;
+            break;
+        }
+    }while(choice!=4);
+    
     return 0;
 }
