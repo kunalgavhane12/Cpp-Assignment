@@ -39,12 +39,7 @@ SLL *insertInSorted(SLL *head,int val)
         head=ptr;
     }
     else
-<<<<<<< HEAD
     {  
-=======
-    {
-       
->>>>>>> 72ca95f36d0df35bd02636c1ef5a28adefd38280
         prev->next=ptr;
     }
     
@@ -52,29 +47,17 @@ SLL *insertInSorted(SLL *head,int val)
 }
 SLL * reverse(SLL * head)
 {
-    SLL *prev=NULL;
-    SLL *cur=head;
-    SLL *nxt=NULL;
-    while(cur)
-    {
-        nxt=cur->next;
-        cur->next=prev;
-        
-        prev=cur;
-        cur=nxt;
-    }
-    head=prev;
-    // SLL *prev=NULL,*cur=NULL,*ptr=NULL;
-    // ptr=head;
-    // while(ptr)
-    // {
-    //       prev=cur;
-    //       cur=ptr;
+     SLL *prev=NULL,*cur=NULL,*ptr=NULL;
+     ptr=head;
+     while(ptr)
+     {
+           prev=cur;
+           cur=ptr;
     
-    //       ptr=ptr->next;
-    //       cur->next=prev;
-    // }
-    // head=cur;
+           ptr=ptr->next;
+           cur->next=prev;
+     }
+     head=cur;
     return head;
 }
 void traversalList(SLL *head)

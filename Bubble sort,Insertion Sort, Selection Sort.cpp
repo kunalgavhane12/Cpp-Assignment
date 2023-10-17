@@ -117,7 +117,8 @@ int main()
             case 5:
             display(arr,n);
             break;
-            case 6:
+            
+	    case 6:
             exit(0);
             break;
             
