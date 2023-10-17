@@ -39,7 +39,12 @@ SLL *insertInSorted(SLL *head,int val)
         head=ptr;
     }
     else
+<<<<<<< HEAD
     {  
+=======
+    {
+       
+>>>>>>> 72ca95f36d0df35bd02636c1ef5a28adefd38280
         prev->next=ptr;
     }
     
