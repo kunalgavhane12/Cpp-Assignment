@@ -24,35 +24,32 @@ void bubbleSort(int *p, int n)
         }
     }
 }
-void insertionSort(int *p, int n)
-{   int i,j;
-    for(i=1; i<n; i++)
-    {
-        int temp=p[i];
-        for(j=i; j>0 && p[j-1]>temp; j--)
-        {
-            p[j]=p[j-1];
-        }
-        p[j]=temp;
-    }
-}
+
 void selectionSort(int *p, int n)
 {
     int i, j, min;
  
     for (i = 0; i < n - 1; i++)
     {
-       min = i;
-       j=i+1;
-       
-       while(j<n)
+       for(j=i+1; j<n; j++)
        {
-           if (p[j] < p[min])
-           min = j;
-           j++;
+	 if(p[i]>p[j])
+	 swap(p[min], p[i]);
        }
-       if (min != i)
-       swap(p[min], p[i]);
+}
+
+void insertionSort(int *p, int n)
+{   int i,j;
+    for(i=1; i<n; i++)
+    {
+        int temp=p[i];
+	j=i-1;
+	while(j>=0 && temp <p[j])
+        {
+            p[j+1]=p[j];
+	    j--;
+        }
+        p[j+1]=temp;
     }
 }
 
