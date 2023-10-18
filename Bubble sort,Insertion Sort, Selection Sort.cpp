@@ -27,13 +27,17 @@ void bubbleSort(int *p, int n)
 
 void selectionSort(int *p, int n)
 {
-    for (i = 0; i < n - 1; i++)
-    {
-       for(j=i+1; j<n; j++)
-       {
-	 if(p[i]>p[j])
-	 swap(p[j], p[i]);
-       }
+    int i,j,temp;
+    for(i=0;i<n-1;i++)
+    {	
+	for(j=i+1;j<n;j++)
+	{
+            if(p[i]>p[j])
+	    {
+		swap(p[i],p[j]);
+	     }
+	}
+     }
 }
 
 void insertionSort(int *p, int n)
