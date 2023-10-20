@@ -28,21 +28,21 @@ SLL *insertInSorted(SLL *head,int val)
         head=ptr;
         return head;
     }
-    while(cur && cur->data < ptr->data)
-    {
-        prev = cur;
-        cur=cur->next;
-    }
-    if(prev==NULL)
+    if(head->next==NULL && head->data > ptr->data)
     {
         ptr->next=head;
         head=ptr;
     }
     else
-    {  
+    {
+        while(cur && cur->data < ptr->data)
+        {
+            prev = cur;
+            cur=cur->next;
+        }
+        ptr->next=cur;
         prev->next=ptr;
     }
-    
     return head;
 }
 SLL * reverse(SLL * head)
